@@ -1,6 +1,6 @@
 # Segfault
 
-A Pointer Podcast side quest for outtakes, off-air recordings, bonus conversations, mistakes, and everything that did not make the main cut.
+A Pointer Podcast archive for outtakes, off-air recordings, bonus conversations, mistakes, and everything that did not make the main cut.
 
 Production site: <https://segfault.pointerpodcast.it>  
 Podcast feed: <https://segfault.pointerpodcast.it/index.xml>

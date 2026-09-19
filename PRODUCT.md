@@ -51,7 +51,7 @@ The only confirmed production episode is `Segfault[0]: Ci compri un mac studio`.
 - Keep the publishing workflow to upload, add metadata, and push.
 - Prefer native web platform features and static output.
 - Preserve facts and stable identifiers; never invent episode metadata.
-- Keep the side quest small enough to understand and maintain at a glance.
+- Keep the archive small enough to understand and maintain at a glance.
 
 ## Accessibility & Inclusion
 

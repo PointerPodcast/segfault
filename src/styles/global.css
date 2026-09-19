@@ -171,8 +171,6 @@ main {
 .nav-label,
 .nav-index,
 .hero-note,
-.hero-status-label,
-.status-line,
 .section-heading,
 .episode-number,
 .episode-index-label,
@@ -356,7 +354,7 @@ main {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(15rem, 0.7fr);
+  grid-template-columns: 1fr;
   margin-bottom: clamp(4rem, 8vw, 7rem);
   border: var(--line);
   border-radius: var(--radius-base);
@@ -400,52 +398,6 @@ main {
   background: var(--secondary-background);
   box-shadow: var(--shadow);
   font-weight: 700;
-}
-
-.hero-status {
-  display: flex;
-  min-height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(1.25rem, 3vw, 2.5rem);
-  border-left: var(--line);
-  border-radius: 0 var(--radius-base) var(--radius-base) 0;
-  background: var(--secondary-background);
-}
-
-.hero-status-label {
-  font-weight: 700;
-}
-
-.hero-status strong {
-  display: block;
-  margin-block: 2rem 0.75rem;
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
-  letter-spacing: -0.11em;
-  line-height: 0.9;
-}
-
-.hero-status p {
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-.status-line {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-top: 1rem;
-  border-top: 2px solid var(--ink);
-  font-weight: 700;
-}
-
-.status-line i {
-  display: inline-block;
-  width: 0.65rem;
-  height: 0.65rem;
-  border-radius: 50%;
-  background: var(--lime);
-  border: 2px solid var(--ink);
 }
 
 .section-heading {
@@ -786,12 +738,6 @@ audio {
   .hero {
     grid-template-columns: 1fr;
   }
-
-  .hero-status {
-    min-height: 17rem;
-    border-top: var(--line);
-    border-left: 0;
-  }
 }
 
 @media (max-width: 42rem) {
@@ -839,10 +785,6 @@ audio {
 
   .hero h1 {
     font-size: clamp(3.5rem, 20vw, 6rem);
-  }
-
-  .hero-status {
-    min-height: 14rem;
   }
 
   .episode {
