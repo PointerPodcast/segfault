@@ -117,6 +117,11 @@ The feed is generated from `src/config/podcast.ts` and the episode collection at
 
 <https://segfault.pointerpodcast.it/index.xml>
 
+It includes the Podcast Namespace (`https://podcastindex.org/namespace/1.0`) with a
+stable channel `podcast:guid`, `podcast:medium`, `podcast:locked`, and
+`podcast:episode` metadata. Keep `podcastGuid` unchanged if the feed URL or hosting
+provider changes; it is the show's permanent Podcasting 2.0 identity.
+
 No RSS file is edited by hand. Before submitting or changing an episode, validate:
 
 - XML parses as UTF-8 RSS 2.0.
