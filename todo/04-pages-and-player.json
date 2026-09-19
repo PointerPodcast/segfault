@@ -1,0 +1,13 @@
+{
+  "id": 4,
+  "title": "Add homepage, episode pages, and Chi siamo",
+  "status": "completed",
+  "subtasks": [
+    "Create a reusable Episode component with native lazy audio playback",
+    "Render the single episode on the homepage in newest-first order",
+    "Generate stable episode routes from collection content",
+    "Add the minimal Italian Chi siamo page and Pointer Podcast links"
+  ],
+  "dependsOn": [2, 3],
+  "verification": ["Homepage, episode, and Chi siamo routes render", "No audio is preloaded automatically"]
+}

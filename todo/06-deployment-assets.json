@@ -1,0 +1,13 @@
+{
+  "id": 6,
+  "title": "Add artwork, favicon, and GitHub Pages deployment",
+  "status": "completed",
+  "subtasks": [
+    "Add replaceable square podcast artwork and favicon",
+    "Add CNAME for segfault.pointerpodcast.it",
+    "Add the officially recommended GitHub Actions Pages workflow",
+    "Keep audio outside the repository and reference the R2 media domain only in episode metadata"
+  ],
+  "dependsOn": [1, 3, 5],
+  "verification": ["Static output includes CNAME and artwork", "Workflow builds and deploys dist through Pages"]
+}

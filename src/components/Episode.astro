@@ -1,0 +1,73 @@
+---
+import type { Episode } from '../lib/episodes';
+import {
+  episodeTitle,
+  episodeUrl,
+  isHttpsUrl,
+} from '../lib/episodes';
+
+interface Props {
+  episode: Episode;
+  standalone?: boolean;
+}
+
+const { episode, standalone = false } = Astro.props;
+const { data } = episode;
+const title = episodeTitle(episode);
+const canonical = episodeUrl(episode);
+const hasAudio = isHttpsUrl(data.audio.url);
+const pointer = data.pointerEpisode;
+const hasPointer = Boolean(pointer.title.trim() && isHttpsUrl(pointer.url));
+const formattedDate = data.date
+  ? new Intl.DateTimeFormat('it-IT', { dateStyle: 'long' }).format(data.date)
+  : null;
+---
+
+<article class:list={['episode', { 'episode--standalone': standalone }]}>
+  <header class="episode-top">
+    <div class="episode-index" aria-label={`Numero episodio ${data.number}`}>
+      <span class="episode-index-label">no.</span>
+      <strong>{data.number}</strong>
+    </div>
+    <div>
+      <span class="episode-number">Segfault[{data.number}]</span>
+      {standalone ? <h1 class="episode-heading">{title}</h1> : <h2 class="episode-heading"><a href={`/episodes/${data.slug}/`}>{title}</a></h2>}
+    </div>
+  </header>
+
+  {(formattedDate || data.duration) && (
+    <p class="episode-meta">
+      {formattedDate && <time datetime={data.date?.toISOString()}>{formattedDate}</time>}
+      {data.duration && <span>durata {data.duration}</span>}
+    </p>
+  )}
+
+  {data.description.trim() && <p class="episode-description">{data.description}</p>}
+
+  {hasAudio ? (
+    <div class="player">
+      <span class="audio-label">play / {data.audio.url.split('/').pop()}</span>
+      <audio controls preload="none" aria-label={`Ascolta ${title}`}>
+        <source src={data.audio.url} type={data.audio.type} />
+        Il tuo browser non supporta la riproduzione audio.
+      </audio>
+    </div>
+  ) : (
+    <p class="metadata-pending" role="status">
+      audio non ancora collegato · completa <code>audio.url</code> e i metadati per pubblicare
+    </p>
+  )}
+
+  {hasPointer && (
+    <p class="related">
+      <strong>→ dal Pointer Podcast</strong><br />
+      <a href={pointer.url} rel="external">
+        {pointer.number !== null && `Pointer #${pointer.number} — `}{pointer.title}
+      </a>
+    </p>
+  )}
+
+  <div class="episode-actions">
+    <a class="permalink" href={canonical}>permalink ↗</a>
+  </div>
+</article>

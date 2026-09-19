@@ -1,0 +1,13 @@
+{
+  "id": 8,
+  "title": "Build and inspect the production output",
+  "status": "completed",
+  "subtasks": [
+    "Install dependencies and run the production build",
+    "Inspect generated routes, HTML, assets, and RSS output",
+    "Parse RSS XML and verify the initial incomplete episode is not emitted as a malformed item",
+    "Fix any build, type, accessibility, or output issues"
+  ],
+  "dependsOn": [1, 2, 3, 4, 5, 6, 7],
+  "verification": ["bun run build succeeds", "Generated output contains the required routes and valid XML"]
+}

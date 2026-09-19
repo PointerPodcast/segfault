@@ -1,0 +1,13 @@
+{
+  "id": 5,
+  "title": "Generate the standards-based podcast RSS feed",
+  "status": "completed",
+  "subtasks": [
+    "Create the static /index.xml endpoint with RSS 2.0 and podcast namespaces",
+    "Generate channel and episode metadata from centralized config and collection data",
+    "Generate escaped XML, stable GUIDs, absolute URLs, and valid enclosures",
+    "Exclude incomplete unpublished episodes and fail clearly for incomplete published episodes"
+  ],
+  "dependsOn": [2, 3, 4],
+  "verification": ["dist/index.xml parses as XML", "Published feed items have complete enclosure metadata"]
+}

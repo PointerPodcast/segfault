@@ -1,0 +1,13 @@
+{
+  "id": 3,
+  "title": "Build the small accessible site shell",
+  "status": "completed",
+  "subtasks": [
+    "Create centralized podcast configuration",
+    "Create the layout with SEO, canonical metadata, social metadata, favicon, and RSS autodiscovery",
+    "Create the header and footer navigation",
+    "Add dark responsive terminal-inspired global CSS"
+  ],
+  "dependsOn": [1, 2],
+  "verification": ["Shared metadata comes from podcast config", "Navigation is keyboard accessible"]
+}

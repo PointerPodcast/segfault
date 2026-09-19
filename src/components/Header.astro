@@ -1,0 +1,41 @@
+---
+import { podcast } from '../config/podcast';
+
+const pathname = Astro.url.pathname;
+const isActive = (path: string) =>
+  path === '/' ? pathname === '/' : pathname === path || pathname.startsWith(path);
+---
+
+<header class="site-header">
+  <a class="brand" href="/">
+    <span class="brand-mark" aria-hidden="true">S/</span>
+    <span class="brand-copy">
+      <span class="brand-prompt">pointer podcast / side quest</span>
+      <span class="brand-name">segfault</span>
+    </span>
+  </a>
+  <div class="header-controls">
+    <nav aria-label="Navigazione principale">
+      <a href="/" aria-current={isActive('/') ? 'page' : undefined}><span class="nav-index">01</span><span class="nav-label">episodi</span></a>
+      <a href="/chi-siamo/" aria-current={isActive('/chi-siamo/') ? 'page' : undefined}><span class="nav-index">02</span><span class="nav-label">chi siamo</span></a>
+      <a href={podcast.feed}><span class="nav-index">03</span><span class="nav-label">rss</span></a>
+    </nav>
+    <details class="theme-picker">
+      <summary class="theme-trigger" aria-label="Scegli tema" title="Scegli tema">
+        <span class="theme-trigger-swatches" aria-hidden="true">
+          <span class="theme-swatch theme-swatch--blue"></span>
+          <span class="theme-swatch theme-swatch--pink"></span>
+          <span class="theme-swatch theme-swatch--yellow"></span>
+          <span class="theme-swatch theme-swatch--green"></span>
+        </span>
+      </summary>
+      <div class="theme-menu" role="group" aria-label="Scegli tema">
+        <p>scegli tema</p>
+        <button type="button" data-theme-option="blue" aria-pressed="true"><span class="theme-swatch theme-swatch--blue" aria-hidden="true"></span>blue</button>
+        <button type="button" data-theme-option="pink" aria-pressed="false"><span class="theme-swatch theme-swatch--pink" aria-hidden="true"></span>pink</button>
+        <button type="button" data-theme-option="yellow" aria-pressed="false"><span class="theme-swatch theme-swatch--yellow" aria-hidden="true"></span>yellow</button>
+        <button type="button" data-theme-option="green" aria-pressed="false"><span class="theme-swatch theme-swatch--green" aria-hidden="true"></span>green</button>
+      </div>
+    </details>
+  </div>
+</header>

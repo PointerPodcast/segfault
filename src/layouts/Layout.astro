@@ -1,0 +1,87 @@
+---
+import { podcast } from '../config/podcast';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+}
+
+const {
+  title = podcast.title,
+  description = podcast.description,
+  canonical = new URL(Astro.url.pathname, podcast.site).toString(),
+  image = podcast.artwork,
+} = Astro.props;
+const documentTitle = title === podcast.title ? 'Segfault — Pointer Podcast side quest' : `${title} · Segfault`;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{documentTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title={`${podcast.title} Podcast`} href={podcast.feed} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={podcast.title} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+  </head>
+  <body>
+    <div class="site-frame">
+      <Header />
+      <main id="main-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const picker = document.querySelector('.theme-picker');
+        let theme = 'blue';
+
+        try {
+          theme = localStorage.getItem('segfault-theme') || 'blue';
+        } catch {
+          // Storage can be unavailable in private browsing; the default still works.
+        }
+
+        const setTheme = (nextTheme) => {
+          root.dataset.theme = nextTheme;
+          picker?.querySelectorAll('[data-theme-option]').forEach((button) => {
+            button.setAttribute('aria-pressed', String(button.dataset.themeOption === nextTheme));
+          });
+        };
+
+        setTheme(theme);
+        picker?.addEventListener('click', (event) => {
+          const button = event.target.closest('[data-theme-option]');
+          if (!button) return;
+          const nextTheme = button.dataset.themeOption;
+          setTheme(nextTheme);
+          try {
+            localStorage.setItem('segfault-theme', nextTheme);
+          } catch {
+            // Keep the selection for this page when storage is unavailable.
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

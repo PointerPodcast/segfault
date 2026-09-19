@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import Episode from '../components/Episode.astro';
+import { podcast } from '../config/podcast';
+import { sortEpisodes, validateEpisodes } from '../lib/episodes';
+import Layout from '../layouts/Layout.astro';
+
+const episodes = sortEpisodes(await getCollection('episodes'));
+validateEpisodes(episodes);
+---
+
+<Layout>
+  <section class="hero" aria-labelledby="site-title">
+    <div class="hero-copy">
+      <h1 id="site-title">segfault<span class="hero-dot">.</span></h1>
+      <p>{podcast.description}</p>
+      <span class="hero-note">Pointer Podcast / materiale extra</span>
+    </div>
+    <aside class="hero-status" aria-label="Stato dell'archivio">
+      <span class="hero-status-label">status / 139</span>
+      <div>
+        <strong>CRASH</strong>
+        <p>il crash è parte del processo. Qui ha un tasto play.</p>
+      </div>
+      <span class="status-line"><i aria-hidden="true"></i> archivio aperto · {episodes.length} episodio{episodes.length === 1 ? '' : 'i'}</span>
+    </aside>
+  </section>
+
+  <section aria-labelledby="episodes-title">
+    <h2 class="section-heading" id="episodes-title">
+      <span>archivio / segfaults</span>
+      <strong>{episodes.length.toString().padStart(2, '0')}</strong>
+    </h2>
+    <div class="episode-list">
+      {episodes.map((episode) => <Episode episode={episode} />)}
+    </div>
+  </section>
+</Layout>

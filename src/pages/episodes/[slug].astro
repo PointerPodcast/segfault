@@ -1,0 +1,34 @@
+---
+import { getCollection, type CollectionEntry, type GetStaticPaths } from 'astro:content';
+import Episode from '../../components/Episode.astro';
+import { podcast } from '../../config/podcast';
+import Layout from '../../layouts/Layout.astro';
+import {
+  episodeTitle,
+  episodeUrl,
+  validateEpisodes,
+} from '../../lib/episodes';
+
+type Props = { episode: CollectionEntry<'episodes'> };
+
+export const getStaticPaths = (async () => {
+  const episodes = await getCollection('episodes');
+  validateEpisodes(episodes);
+  return episodes.map((episode) => ({
+    params: { slug: episode.data.slug },
+    props: { episode },
+  }));
+}) satisfies GetStaticPaths;
+
+const { episode } = Astro.props as Props;
+const title = episodeTitle(episode);
+---
+
+<Layout
+  title={title}
+  description={episode.data.description || podcast.description}
+  canonical={episodeUrl(episode)}
+>
+  <a class="back-link" href="/">← tutti gli episodi</a>
+  <Episode episode={episode} standalone />
+</Layout>

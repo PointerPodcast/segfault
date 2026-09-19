@@ -1,0 +1,13 @@
+{
+  "id": 2,
+  "title": "Add the episode content collection and validation",
+  "status": "completed",
+  "subtasks": [
+    "Define the episodes collection using the current Astro content loader API",
+    "Validate episode identity, publication metadata, audio metadata, and related Pointer data",
+    "Add the single real Segfault[0] content file without inventing missing values",
+    "Add shared helpers for sorting, URLs, display names, and production validation"
+  ],
+  "dependsOn": [1],
+  "verification": ["Collection type-checks", "Incomplete initial metadata remains explicit"]
+}

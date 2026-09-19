@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "title": "Create the Astro project foundation",
+  "status": "completed",
+  "subtasks": [
+    "Create package.json with Astro and TypeScript scripts",
+    "Add current Astro static-site configuration with the production site URL",
+    "Add strict TypeScript configuration",
+    "Install dependencies and commit the lockfile"
+  ],
+  "dependsOn": [],
+  "verification": ["npm install", "npm run build"]
+}

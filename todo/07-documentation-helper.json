@@ -1,0 +1,13 @@
+{
+  "id": 7,
+  "title": "Document publishing, R2, RSS validation, and deployment",
+  "status": "completed",
+  "subtasks": [
+    "Document local commands and one-file episode publishing workflow",
+    "Document exact byte-size collection and production metadata requirements",
+    "Document Cloudflare R2 custom-domain, HTTP Range, HEAD, caching, and MIME setup",
+    "Document artwork recommendations, DNS, GitHub Pages settings, and feed validators"
+  ],
+  "dependsOn": [5, 6],
+  "verification": ["README covers maintenance and deployment without hidden steps"]
+}

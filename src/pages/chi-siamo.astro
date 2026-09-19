@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { podcast } from '../config/podcast';
+---
+
+<Layout title="Chi siamo" description="Che cos'è Segfault, una side quest di Pointer Podcast.">
+  <header class="page-header">
+    <h1>Chi siamo</h1>
+    <p>Segfault è una side quest di Pointer Podcast.</p>
+  </header>
+
+  <div class="prose">
+    <p>
+      <a href="https://pointerpodcast.it">Pointer Podcast</a> è il progetto principale.
+      Segfault raccoglie ciò che vive ai margini delle puntate: fuori onda, errori,
+      conversazioni bonus, discussioni off-air e cose tagliate dal montaggio.
+    </p>
+    <h2>Perché “Segfault”?</h2>
+    <p>
+      Perché anche i programmi hanno una memoria, uno stack e qualche modo creativo
+      di uscire dai binari. Qui il crash è parte del processo, ma con un tasto play.
+    </p>
+    <p><a href={podcast.feed}>Iscriviti al feed RSS →</a></p>
+  </div>
+</Layout>
