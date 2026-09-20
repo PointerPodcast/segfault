@@ -4,6 +4,7 @@ import {
   episodeTitle,
   episodeUrl,
   isHttpsUrl,
+  youtubeEmbedUrl,
 } from '../lib/episodes';
 
 interface Props {
@@ -16,6 +17,7 @@ const { data } = episode;
 const title = episodeTitle(episode);
 const canonical = episodeUrl(episode);
 const hasAudio = isHttpsUrl(data.audio.url);
+const youtubeUrl = youtubeEmbedUrl(data.youtubeUrl);
 const pointer = data.pointerEpisode;
 const hasPointer = Boolean(pointer.title.trim() && isHttpsUrl(pointer.url));
 const formattedDate = data.date
@@ -56,6 +58,22 @@ const formattedDate = data.date
     <p class="metadata-pending" role="status">
       audio non ancora collegato · completa <code>audio.url</code> e i metadati per pubblicare
     </p>
+  )}
+
+  {youtubeUrl && (
+    <figure class="video-embed">
+      <div class="video-label">video / youtube</div>
+      <div class="video-frame">
+        <iframe
+          src={youtubeUrl}
+          title={`Guarda ${title} su YouTube`}
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </figure>
   )}
 
   {hasPointer && (

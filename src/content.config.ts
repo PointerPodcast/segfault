@@ -17,6 +17,7 @@ const episodes = defineCollection({
     date: z.coerce.date().nullable(),
     description: z.string().default(""),
     duration: z.string().trim().default(""),
+    youtubeUrl: z.string().url().nullable().default(null),
     audio: z.object({
       url: z.string().default(""),
       size: z.number().int().nonnegative().nullable().default(null),

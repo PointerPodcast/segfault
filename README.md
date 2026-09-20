@@ -50,6 +50,7 @@ guid: "pointer-segfault-1"
 date: 2026-01-01T12:00:00+01:00
 description: "A real episode description."
 duration: "12:34"
+youtubeUrl: null
 audio:
   url: "https://media.pointerpodcast.it/segfault-1.mp3"
   size: 12345678
@@ -66,6 +67,7 @@ explicit: false
 - `date` must be a valid ISO date/time. `duration` must be `MM:SS` or `HH:MM:SS`.
 - `audio.url` must be an absolute HTTPS URL. `audio.type` is normally `audio/mpeg`.
 - `audio.size` is the exact MP3 size in bytes and becomes RSS enclosure `length`.
+- `youtubeUrl` is optional; when set to a YouTube watch URL, the episode page embeds it using YouTube's privacy-enhanced player.
 - `pointerEpisode` is optional. If the related episode is not confirmed, leave its fields blank/null; the UI omits the relationship.
 - A `published: true` entry fails the build if required RSS metadata is incomplete. An unpublished entry can remain visible for preparation and is skipped by the feed.
 

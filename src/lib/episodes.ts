@@ -20,6 +20,26 @@ export function isHttpsUrl(value: string): boolean {
   }
 }
 
+export function youtubeEmbedUrl(value: string | null): string | null {
+  if (!value) return null;
+
+  try {
+    const url = new URL(value);
+    let videoId: string | null = null;
+    if (url.hostname === "youtu.be") {
+      videoId = url.pathname.slice(1);
+    } else if (url.hostname === "www.youtube.com" && url.pathname === "/watch") {
+      videoId = url.searchParams.get("v");
+    }
+
+    return videoId && /^[A-Za-z0-9_-]{11}$/.test(videoId)
+      ? `https://www.youtube-nocookie.com/embed/${videoId}`
+      : null;
+  } catch {
+    return null;
+  }
+}
+
 export function sortEpisodes(episodes: Episode[]): Episode[] {
   return [...episodes].sort((a, b) => {
     const dateA = a.data.date?.getTime() ?? Number.NEGATIVE_INFINITY;
